@@ -1,0 +1,39 @@
+---
+
+- name: Install docker via Amazon Linux Extras CLI
+  shell: "amazon-linux-extras install docker -y"
+  register: docker_install_result
+  changed_when: '"already installed and latest version" not in docker_install_result.stdout'
+
+- name: Install pip
+  yum:
+    name: python-pip
+    state: latest
+
+- name: Start docker
+  systemd:
+    state: started
+    name: docker
+
+- name: Enable Docker on boot
+  systemd:
+    name: docker
+    enabled: yes
+    masked: no
+
+- name: Add ec2-user to aws group
+  user:
+    name: ec2-user
+    group: docker
+
+- name: Install docker
+  pip:
+    name: docker
+
+- name: nginx Container Test
+  docker_container:
+    name: nginx-test
+    state: started
+    image: nginx
+    expose: 80
+    published_ports: 80:80

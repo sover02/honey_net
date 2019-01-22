@@ -8,27 +8,27 @@
     name: '*'
     state: latest
 
-- name: Install docker via Amazon Linux Extras CLI
-  shell: "amazon-linux-extras install docker -y"
-
-- name: Start docker
-  systemd:
-    state: started
-    name: docker
-
-- name: Enable Docker on boot
-  systemd:
-    name: docker
-    enabled: yes
-    masked: no
-
-- name: Add ec2-user to aws group
-  user:
-    name: ec2-user
-    group: docker
-
-
-
+#- name: Install docker via Amazon Linux Extras CLI
+#  shell: "amazon-linux-extras install docker -y"
+#
+#- name: Start docker
+#  systemd:
+#    state: started
+#    name: docker
+#
+#- name: Enable Docker on boot
+#  systemd:
+#    name: docker
+#    enabled: yes
+#    masked: no
+#
+#- name: Add ec2-user to aws group
+#  user:
+#    name: ec2-user
+#    group: docker
+#
+- name: Start the Docker party
+  import_tasks: docker.yml
 
 ### TODO: Change SSH PORT, then:
 #
