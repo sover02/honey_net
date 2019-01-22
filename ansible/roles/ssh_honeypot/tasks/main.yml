@@ -3,7 +3,35 @@
     content: "honey_pot\n" 
     dest: /tmp/honeypot.txt
 
-#- name: upgrade all packages
-#  yum:
-#    name: '*'
-#    state: latest
+- name: upgrade all packages
+  yum:
+    name: '*'
+    state: latest
+
+- name: Install docker via Amazon Linux Extras CLI
+  shell: "amazon-linux-extras install docker -y"
+
+- name: Start docker
+  systemd:
+    state: started
+    name: docker
+
+- name: Enable Docker on boot
+  systemd:
+    name: docker
+    enabled: yes
+    masked: no
+
+- name: Add ec2-user to aws group
+  user:
+    name: ec2-user
+    group: docker
+
+
+
+
+### TODO: Change SSH PORT, then:
+#
+#- name: Change ssh port to 8888
+#  set_fact:
+#      ansible_port: 8888
