@@ -1,0 +1,9 @@
+---
+
+- name: Honeypot servers
+  hosts:
+   - all
+  roles:
+   - ssh_honeypot
+  become: yes
+  become_method: sudo
