@@ -1,37 +1,10 @@
-- name: Create a file called '/tmp/honeypot.txt' with the content 'honey_pot'.
-  copy: 
-    content: "honey_pot\n" 
-    dest: /tmp/honeypot.txt
+---
+- name: OS configuration
+  import_tasks: os.yml
 
-- name: upgrade all packages
-  yum:
-    name: '*'
-    state: latest
+# Have to do this first, so we can free up port 22
+- name: Let's swap SSH Ports!
+  import_tasks: ssh_port_swap.yml
 
-#- name: Install docker via Amazon Linux Extras CLI
-#  shell: "amazon-linux-extras install docker -y"
-#
-#- name: Start docker
-#  systemd:
-#    state: started
-#    name: docker
-#
-#- name: Enable Docker on boot
-#  systemd:
-#    name: docker
-#    enabled: yes
-#    masked: no
-#
-#- name: Add ec2-user to aws group
-#  user:
-#    name: ec2-user
-#    group: docker
-#
 - name: Start the Docker party
   import_tasks: docker.yml
-
-### TODO: Change SSH PORT, then:
-#
-#- name: Change ssh port to 8888
-#  set_fact:
-#      ansible_port: 8888

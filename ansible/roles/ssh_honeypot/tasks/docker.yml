@@ -30,10 +30,10 @@
   pip:
     name: docker
 
-- name: nginx Container Test
+- name: Spin up a cowrie container
   docker_container:
-    name: nginx-test
+    name: cowrie_honeypot
     state: started
-    image: nginx
-    expose: 80
-    published_ports: 80:80
+    image: cowrie/cowrie
+    expose: 2222
+    published_ports: 22:2222

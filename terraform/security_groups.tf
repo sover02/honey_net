@@ -13,8 +13,8 @@ resource "aws_security_group" "honeypot_security_group_us-west-1" {
 
   # Real SSH Access
   ingress {
-    from_port = 2222
-    to_port = 2222
+    from_port = 22222
+    to_port = 22222
     protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -43,8 +43,8 @@ resource "aws_security_group" "honeypot_security_group_ap-northeast-1" {
 
   # Real SSH Access
   ingress {
-    from_port = 2222
-    to_port = 2222
+    from_port = 22222
+    to_port = 22222
     protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }

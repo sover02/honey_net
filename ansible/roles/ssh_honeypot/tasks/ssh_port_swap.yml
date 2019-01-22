@@ -1,0 +1,13 @@
+- name: Setup alternate SSH port
+  lineinfile:
+    dest: "/etc/ssh/sshd_config"
+    regexp: "^#Port"
+    line: "#Port 22\nPort 22222"
+#  notify: sshd_restart
+
+# For some reason I couldn't get my handler notify to link
+# TODO: Mess with it later
+- name: "Restart sshd"
+  systemd:
+    name: sshd
+    state: restarted

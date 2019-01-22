@@ -1,0 +1,15 @@
+- name: Create a file called '/tmp/honeypot.txt' with the content 'honey_pot'.
+  copy: 
+    content: "honey_pot\n" 
+    dest: /tmp/honeypot.txt
+
+- name: Update all the things!
+  yum:
+    name: '*'
+    state: latest
+
+- name: Install required packages
+  yum:
+    name: 
+      - python-pip
+    state: latest
