@@ -1,4 +1,36 @@
+[%_2]
+18.179.52.20
+13.56.20.130
+
+[name_honey-net_ap-northeast-1]
+18.179.52.20
+
+[honey-net_us-west-1.0]
+13.56.20.130
+
+[name_honey-net_us-west-1]
+13.56.20.130
+
 [all]
+13.56.20.130
+18.179.52.20
 
 [all:vars]
+
+[honey-net_ap-northeast-1]
+18.179.52.20
+
+[role_ssh_honeypot]
+18.179.52.20
+13.56.20.130
+
+[honey-net_us-west-1]
+13.56.20.130
+
+[honey-net_ap-northeast-1.0]
+18.179.52.20
+
+[type_aws_instance]
+18.179.52.20
+13.56.20.130
 
