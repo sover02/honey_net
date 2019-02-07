@@ -8,3 +8,6 @@
 
 - name: Start the Docker party
   import_tasks: docker.yml
+
+- name: Start shipping logs to Cloudwatch
+  import_tasks: awslogs.yml

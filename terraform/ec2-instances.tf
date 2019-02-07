@@ -6,10 +6,13 @@ resource "aws_instance" "honey-net_ap-northeast-1" {
   ami      = "${data.aws_ami.amazonlinux_latest_ap-northeast-1.id}"
   security_groups = ["${aws_security_group.honeypot_security_group_ap-northeast-1.name}"]
   key_name = "honeypot_ec2_key_pub"
+  iam_instance_profile = "honey_net-untrusted-logging_role"
 
   tags = {
-    Name = "honey-net_ap-northeast-1"
-    Role = "ssh_honeypot"
+    Name = "honey-net_ap-northeast-1",
+    Role = "ssh_honeypot",
+    project = "honey_net",
+    trust = "untrusted"
   }
 
   provisioner "remote-exec" {
@@ -31,10 +34,13 @@ resource "aws_instance" "honey-net_us-west-1" {
   ami           = "${data.aws_ami.amazonlinux_latest_us-west-1.id}"
   security_groups = ["${aws_security_group.honeypot_security_group_us-west-1.name}"]
   key_name = "honeypot_ec2_key_pub"
+  iam_instance_profile = "honey_net-untrusted-logging_role"
 
   tags = {
-    Name = "honey-net_us-west-1"
-    Role = "ssh_honeypot"
+    Name = "honey-net_us-west-1",
+    Role = "ssh_honeypot",
+    project = "honey_net",
+    trust = "untrusted"
   }
 
   provisioner "remote-exec" {

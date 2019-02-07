@@ -1,6 +1,6 @@
 resource "aws_security_group" "honeypot_security_group_us-west-1" {
   name = "honeypot_security_group-us-west-1"
-  description = "allow ssh"
+  description = "honey_net rules Allow 22222 for Fake SSH, and 22 for real SSH"
   provider = "aws.us-west-1"
 
   # Fake SSH Access
@@ -30,7 +30,7 @@ resource "aws_security_group" "honeypot_security_group_us-west-1" {
 
 resource "aws_security_group" "honeypot_security_group_ap-northeast-1" {
   name = "honeypot_security_group-ap-northeast-1"
-  description = "allow ssh"
+  description = "honey_net rules Allow 22222 for Fake SSH, and 22 for real SSH"
   provider = "aws.ap-northeast-1"
 
   # Fake SSH Access

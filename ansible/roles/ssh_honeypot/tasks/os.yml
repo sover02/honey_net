@@ -12,4 +12,5 @@
   yum:
     name: 
       - python-pip
+      - awslogs
     state: latest

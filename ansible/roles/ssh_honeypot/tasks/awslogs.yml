@@ -1,0 +1,41 @@
+---
+
+- name: Install awslogs package
+  yum:
+    name: awslogs
+    state: latest
+
+# Point logging agent at us-east-1 Cloudwatch instance
+- replace:
+    path: /etc/awslogs/awscli.conf
+    regexp: '(region = )[a-zA-Z\-]*$'
+    replace: '\1us-east-1'
+
+# Change the default /var/log/messages example to our cowrie logs
+- replace:
+    path: /etc/awslogs/awslogs.conf
+    regexp: '(\[)\/var\/log\/messages(\])?$'
+    replace: '\1cowrie_logs\2'
+
+- replace:
+    path: /etc/awslogs/awslogs.conf
+    regexp: '(file = )\/var\/log\/messages$'
+    replace: '\1/var/lib/docker/volumes/*/_data/log/cowrie/cowrie.json'
+
+- replace:
+    path: /etc/awslogs/awslogs.conf
+    regexp: '(log_stream_name = )\{instance_id\}$'
+    replace: '\1cowrie.json-logs'
+
+- replace:
+    path: /etc/awslogs/awslogs.conf
+    regexp: '(log_group_name = )\/var\/log\/messages$'
+    replace: '\1honey_net-logs'
+
+- name: Start awslogsd service and enable on boot
+  systemd:
+    name: awslogsd
+    state: restarted
+    enabled: yes
+    masked: no
+

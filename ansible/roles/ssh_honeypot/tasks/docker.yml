@@ -5,11 +5,6 @@
   register: docker_install_result
   changed_when: '"already installed and latest version" not in docker_install_result.stdout'
 
-- name: Install pip
-  yum:
-    name: python-pip
-    state: latest
-
 - name: Start docker
   systemd:
     state: started
@@ -21,19 +16,25 @@
     enabled: yes
     masked: no
 
-- name: Add ec2-user to aws group
+- name: Add ec2-user to docker group
   user:
     name: ec2-user
     group: docker
 
-- name: Install docker
+- name: Install docker pip package
   pip:
     name: docker
+
+- name: Get systems public_ip
+  ipify_facts:
+  register: public_ip
 
 - name: Spin up a cowrie container
   docker_container:
     name: cowrie_honeypot
     state: started
+    restart_policy: always
     image: cowrie/cowrie
+    hostname: "{{ public_ip.ansible_facts.ipify_public_ip }}"
     expose: 2222
     published_ports: 22:2222
