@@ -9,6 +9,10 @@ epoch_now = int(time.time())
 epoch_24_hours_ago = epoch_now-(60*60*24)
 
 client = boto3.client('logs', region_name='us-east-1')
+s3_client = boto3.resource('s3')
+
+s3_bucket = 'honey-net-threat-list'
+output_file = 'threatlist_24hr.csv'
 
 response = client.start_query(
     logGroupName='honey_net-logs',
@@ -47,9 +51,12 @@ for idx, line in enumerate(threat_list):
     last_seen = datetime.datetime.fromtimestamp(last_seen).strftime('%Y-%m-%d %H:%M:%S UTC')
     threat_list[idx]['last_seen'] = last_seen
 
-with open('/tmp/threatlist.csv', 'wb') as output_file:
+with open('/tmp/threatlist_24hours.csv', 'wb') as output_file:
     dict_writer = csv.DictWriter(output_file, threat_list[0].keys())
     dict_writer.writeheader()
     dict_writer.writerows(threat_list)
 
-print(json.dumps(threat_list))
+bucket = s3_client.Bucket(s3_bucket)
+s3_client.Object(s3_bucket, output_file).put(Body=open('/tmp/'+output_file, 'rb'))
+
+#print(json.dumps(threat_list))
