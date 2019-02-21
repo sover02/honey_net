@@ -5,13 +5,15 @@ import polling
 import datetime
 import boto3
 
+epoch_now = int(time.time())
+epoch_24_hours_ago = epoch_now-(60*60*24)
 
 client = boto3.client('logs', region_name='us-east-1')
 
 response = client.start_query(
     logGroupName='honey_net-logs',
-    startTime=1550124120,
-    endTime=1550127092,
+    startTime=epoch_24_hours_ago,
+    endTime=epoch_now,
     queryString='fields timestamp, sensor, src_ip, eventid, session \
                  | filter eventid ~= /cowrie.login.*/ \
                  | stats count(*) as count, max(@timestamp) as last_seen by src_ip',
