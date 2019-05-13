@@ -1,6 +1,16 @@
 # Establish multiple region providers
 
-provider "aws" { } # Need a base to build on top of
+provider "aws" { 
+
+    terraform {
+    backend "s3" {
+        bucket = "honey-net-terraform-key"
+        key    = "honey_net/key"
+        region = "us-east-1"
+    }
+    }
+
+} # Need a base to build on top of
 provider "aws" { alias = "us-east-1", region = "us-east-1" }
 provider "aws" { alias = "us-east-2", region = "us-east-2" }
 provider "aws" { alias = "us-west-1", region = "us-west-1" }
