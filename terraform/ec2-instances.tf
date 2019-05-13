@@ -5,7 +5,7 @@ resource "aws_instance" "honey-net_ap-northeast-1" {
   provider = "aws.ap-northeast-1"
   ami      = "${data.aws_ami.amazonlinux_latest_ap-northeast-1.id}"
   security_groups = ["${aws_security_group.honeypot_security_group_ap-northeast-1.name}"]
-  key_name = "honeypot_ec2_key_pub"
+  key_name = "honeypot_ec2-user"
   iam_instance_profile = "honey_net-untrusted-logging_role"
 
   tags = {
@@ -23,7 +23,7 @@ resource "aws_instance" "honey-net_ap-northeast-1" {
 
   connection {
     user = "ec2-user"
-    private_key = "${file(pathexpand("~/.ssh/honeypot_ec2-instance_id_rsa"))}"
+    private_key = "${file(pathexpand("~/.ssh/honeypot_ec2-user.pem"))}"
     agent = "false"
   }
 }
@@ -33,7 +33,7 @@ resource "aws_instance" "honey-net_us-west-1" {
   provider = "aws.us-west-1"
   ami           = "${data.aws_ami.amazonlinux_latest_us-west-1.id}"
   security_groups = ["${aws_security_group.honeypot_security_group_us-west-1.name}"]
-  key_name = "honeypot_ec2_key_pub"
+  key_name = "honeypot_ec2-user"
   iam_instance_profile = "honey_net-untrusted-logging_role"
 
   tags = {
@@ -51,7 +51,7 @@ resource "aws_instance" "honey-net_us-west-1" {
 
   connection {
     user = "ec2-user"
-    private_key = "${file(pathexpand("~/.ssh/honeypot_ec2-instance_id_rsa"))}"
+    private_key = "${file(pathexpand("~/.ssh/honeypot_ec2-user.pem"))}"
     agent = "false"
   }
 
@@ -62,7 +62,7 @@ resource "aws_instance" "honey-net_eu-north-1" {
   provider = "aws.eu-north-1"
   ami           = "${data.aws_ami.amazonlinux_latest_eu-north-1.id}"
   security_groups = ["${aws_security_group.honeypot_security_group_eu-north-1.name}"]
-  key_name = "honeypot_ec2_key_pub"
+  key_name = "honeypot_ec2-user"
   iam_instance_profile = "honey_net-untrusted-logging_role"
 
   tags = {
@@ -80,7 +80,7 @@ resource "aws_instance" "honey-net_eu-north-1" {
 
   connection {
     user = "ec2-user"
-    private_key = "${file(pathexpand("~/.ssh/honeypot_ec2-instance_id_rsa"))}"
+    private_key = "${file(pathexpand("~/.ssh/honeypot_ec2-user.pem"))}"
     agent = "false"
   }
 
