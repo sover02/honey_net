@@ -1,29 +1,4 @@
-[name_honey-net_ap-northeast-1]
-18.182.65.221
-
-[role_ssh_honeypot]
-18.182.65.221
-
-[%_4]
-18.182.65.221
-
 [all]
-18.182.65.221
 
 [all:vars]
-
-[honey-net_ap-northeast-1]
-18.182.65.221
-
-[honey-net_ap-northeast-1.0]
-18.182.65.221
-
-[type_aws_instance]
-18.182.65.221
-
-[project_honey_net]
-18.182.65.221
-
-[trust_untrusted]
-18.182.65.221
 
