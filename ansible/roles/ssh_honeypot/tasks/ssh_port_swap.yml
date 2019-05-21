@@ -2,11 +2,9 @@
   lineinfile:
     dest: "/etc/ssh/sshd_config"
     regexp: "^#Port"
-    line: "#Port 22\nPort 22222"
-  register: sshd_config_changed
+    line: "#Port 22\nPort {{ replacement_ssh_port }}"
   
 - name: Restart sshd, probably
   systemd:
     name: sshd
     state: restarted
-  when: sshd_config_changed.changed

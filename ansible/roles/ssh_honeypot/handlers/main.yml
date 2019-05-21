@@ -1,4 +1,4 @@
 ---
-- name: restart beats
-  service: name=beats state=restarted
+- name: restart filebeat
+  service: name=filebeat state=restarted
 

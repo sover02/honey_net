@@ -14,3 +14,4 @@
 
 - name: Start shipping logs to Logstash
   import_tasks: beats.yml
+  
