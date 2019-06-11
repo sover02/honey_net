@@ -14,3 +14,9 @@
       - python-pip
       - awslogs
     state: latest
+
+- name: Open Alternative SSH Port
+  firewalld:
+    port: "{{ replacement_ssh_port }}/tcp"
+    permanent: yes
+    state: enabled
