@@ -1,4 +1,10 @@
 ---
+- name: Run Terraform
+  hosts:
+   - "127.0.0.1"
+  roles:
+  - terraform
+  gather_facts: yes
 
 - name: Honeypot servers
   hosts:

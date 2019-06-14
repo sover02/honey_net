@@ -1,0 +1,31 @@
+---
+- name: Run Terraform Apply
+  terraform:
+    project_path: "../terraform"
+    state: "present"
+    force_init: true
+  register: tf_command
+  
+- name: print TF output
+  debug:
+    msg: "{{ tf_command }}"
+
+    # backend_config:
+    #   region: "us-east-1"
+
+# - name: Ingest terraform.tfstate
+#   set_fact:
+#     tfstate: "{{ lookup('file','../terraform/terraform.tfstate')|from_json }}"
+
+# - name: Create list of aws resources
+#   set_fact:
+#     resources: '{{tfstate | json_query("modules[].resources[]")}}'
+
+# - name: Add dynamically created ec2 instances to appropriate groups
+#   with_dict: "{{ resources }}"
+#   when: item.value.type == "aws_instance"
+#   add_host:
+#     name: "{{ item.value.primary.attributes.public_ip }}"
+#     # Groups can be defined as a comma-separated list in the terraform resource
+#     groups: "{{ item.value.primary.attributes[\"tags.ansible_roles\"] }}"
+
