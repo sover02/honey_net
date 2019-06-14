@@ -13,6 +13,7 @@
     name: 
       - filebeat
     state: latest
+    lock_timeout: 60
 
 - name: Configure filebeat
   template:

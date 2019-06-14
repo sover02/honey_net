@@ -64,7 +64,6 @@ resource "aws_instance" "honey-pot-server" {
   ami                  = data.aws_ami.amazonlinux_latest.id
   security_groups      = [aws_security_group.honeypot_security_group.name]
   key_name             = aws_key_pair.honeypot_ec2_key_pub.key_name
-#   iam_instance_profile = "honey_net-untrusted-logging_role"
 
   tags = {
     Name    = "honey-net_ap-northeast-1"

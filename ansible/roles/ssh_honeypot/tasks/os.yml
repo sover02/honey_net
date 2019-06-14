@@ -12,8 +12,14 @@
   yum:
     name: 
       - python-pip
-      - awslogs
+      - firewalld
     state: latest
+    lock_timeout: 60
+
+- name: Start firewalld
+  systemd:
+    state: started
+    name: firewalld
 
 - name: Open Alternative SSH Port
   firewalld:

@@ -1,11 +1,9 @@
-
-
-module "honey_pot_us-east-1" {
-  source = "./honey_net_instance"
-  providers = {
-    aws = "aws.us-east-1"
-  }
-}
+# module "honey_pot_us-east-1" {
+#   source = "./honey_net_instance"
+#   providers = {
+#     aws = "aws.us-east-1"
+#   }
+# }
 
 module "honey_pot_us-east-2" {
   source = "./honey_net_instance"

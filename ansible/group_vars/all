@@ -1,5 +1,5 @@
 ---
-# file: group_vars/roll_ssh_honeypot
+# file: group_vars/all
 
 # SSH Configs
 ansible_user: "ec2-user"

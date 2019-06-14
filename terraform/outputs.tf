@@ -1,4 +1,4 @@
-output "honey_pot_ip_addresses_us-east-1" { value = module.honey_pot_us-east-1.public_ip }
+# output "honey_pot_ip_addresses_us-east-1" { value = module.honey_pot_us-east-1.public_ip }
 output "honey_pot_ip_addresses_us-east-2" { value = module.honey_pot_us-east-2.public_ip }
 output "honey_pot_ip_addresses_us-west-1" { value = module.honey_pot_us-west-1.public_ip }
 output "honey_pot_ip_addresses_us-west-2" { value = module.honey_pot_us-west-2.public_ip }
