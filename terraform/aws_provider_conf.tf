@@ -1,6 +1,8 @@
 # Establish multiple region providers
 
-provider "aws" { # Need a base to build on top of
+# Will be overridden by other aliases
+provider "aws" {
+  region = "us-east-1"
 }
 
 terraform {

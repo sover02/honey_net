@@ -1,11 +1,18 @@
+data "aws_region" "current" {
+  provider = "aws"
+}
 
 data "local_file" "ssh_key_text_pub" {
   filename = "${pathexpand("~/.ssh/honeypot_ec2-user.pub")}"
 }
 
+variable "number" {
+  default = 1
+}
+
 resource "aws_key_pair" "honeypot_ec2_key_pub" {
   provider   = "aws"
-  key_name   = "honeypot_ec2-user"
+  key_name   = "honeypot_ec2-user-${data.aws_region.current.name}"
   public_key = "${data.local_file.ssh_key_text_pub.content}"
 }
 
@@ -19,7 +26,6 @@ data "aws_ami" "amazonlinux_latest" {
   }
   filter {
     name   = "name"
-    # values = ["amzn2-ami-hvm*"]
     values = ["amzn2-ami-hvm-2.0.????????-x86_64-gp2"]
   }
   filter {
@@ -29,7 +35,7 @@ data "aws_ami" "amazonlinux_latest" {
 }
 
 resource "aws_security_group" "honeypot_security_group" {
-  name        = "honeypot_security_group"
+  name        = "honeypot_security_group-${data.aws_region.current.name}"
   description = "honey_net rules Allow 22222 for Fake SSH, and 22 for real SSH"
   provider    = "aws"
 
@@ -59,11 +65,12 @@ resource "aws_security_group" "honeypot_security_group" {
 }
 
 resource "aws_instance" "honey-pot-server" {
-  instance_type        = "t3.nano"
-  provider             = aws
-  ami                  = data.aws_ami.amazonlinux_latest.id
-  security_groups      = [aws_security_group.honeypot_security_group.name]
-  key_name             = aws_key_pair.honeypot_ec2_key_pub.key_name
+  instance_type   = "t3.nano"
+  provider        = aws
+  ami             = data.aws_ami.amazonlinux_latest.id
+  security_groups = [aws_security_group.honeypot_security_group.name]
+  key_name        = aws_key_pair.honeypot_ec2_key_pub.key_name
+  count           = var.number
 
   tags = {
     Name    = "honey-net_ap-northeast-1"
@@ -88,5 +95,5 @@ resource "aws_instance" "honey-pot-server" {
 }
 
 output "public_ip" {
-  value = aws_instance.honey-pot-server.public_ip
+  value = aws_instance.honey-pot-server[*].public_ip
 }
