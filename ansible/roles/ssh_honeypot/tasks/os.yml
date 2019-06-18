@@ -8,13 +8,20 @@
     name: '*'
     state: latest
 
+# Workaround for bug: https://github.com/ansible/ansible/issues/56583
+# In future, will use yum module's `lock_timeout: 60`
+- name: Wait until yum is unlocked
+  wait_for:
+    path: "/var/run/yum.pid"
+    state: absent
+
 - name: Install required packages
   yum:
     name: 
       - python-pip
       - firewalld
     state: latest
-    lock_timeout: 60
+    # lock_timeout: 60 # Ansible bug: https://github.com/ansible/ansible/issues/56583
 
 - name: Start firewalld
   systemd:
