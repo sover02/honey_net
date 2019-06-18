@@ -1,6 +1,6 @@
 # honey_net
 
-To start, go into the, create your virtual environment, activate it, and then install necessary pip modules.
+To start, create your virtual environment, activate it, and then install necessary pip modules.
 
 ```
 virtualenv ~/.venvs/honey_net
