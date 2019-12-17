@@ -3,8 +3,8 @@
 To start, create your virtual environment, activate it, and then install necessary pip modules.
 
 ```
-virtualenv ~/.venvs/honey_net
-. ~/.venvs/honey_net/bin/activate
+virtualenv ~/.venvs/github_honey_net
+. ~/.venvs/github_honey_net/bin/activate
 pip install -r requirements.txt
 ```
 
