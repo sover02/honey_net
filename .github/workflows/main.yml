@@ -1,8 +1,7 @@
 on:
-  - push
-  # - schedule:
-  #   # Run at 2:30 am
-  #   - cron:  '30 2 * * *'
+  - schedule:
+    # Run at 5am UTC, midnight EST
+    - cron:  '0 5 * * *'
 
 jobs:
   cycle_honeypot_servers:
