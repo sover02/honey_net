@@ -2,5 +2,6 @@
 **/.gitignore
 **/.retry
 **/.terraform
+**/.terraform/*
 **/.DS_Store
 **/.swp
