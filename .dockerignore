@@ -1,7 +1,11 @@
 **/.git
 **/.gitignore
+**/.github
 **/.retry
 **/.terraform
-**/.terraform/*
 **/.DS_Store
 **/.swp
+
+Dockerfile
+README.md
+action.yml

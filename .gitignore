@@ -1,7 +1,5 @@
-.vscode/settings.json
-var/run/honeypot_hosts
+**/.vscode
 **/.retry
 **/.terraform
-**/.terraform/*
 **/.DS_Store
 **/.swp
