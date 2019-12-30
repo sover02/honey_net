@@ -1,7 +1,7 @@
-- name: Create a file called '/tmp/honeypot.txt' with the content 'honey_pot'.
-  copy: 
-    content: "honey_pot\n" 
-    dest: /tmp/honeypot.txt
+# - name: Create a file called '/tmp/honeypot.txt' with the content 'honey_pot'.
+#   copy: 
+#     content: "honey_pot\n" 
+#     dest: /tmp/honeypot.txt
 
 - name: Update all the things!
   yum:
