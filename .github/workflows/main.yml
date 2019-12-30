@@ -11,7 +11,7 @@ jobs:
     steps:
     - name: honey_net
       id: honey_net
-      uses: sover02/honey_net@1
+      uses: sover02/honey_net@0.0.1
       with:
         SSH_PUBLIC_KEY: ${{ secrets.SSH_PUBLIC_KEY }}
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
