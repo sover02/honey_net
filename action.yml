@@ -1,6 +1,10 @@
 name: 'Cycle Honeypots'
 description: 'Cycles Honeypot Servers'
 inputs:
+  ACTION:
+    description: '"cycle_honeypots" to cycle honeypots, or "update_threatlists" to update threatlists. Defaults to "cycle_honeypots"'
+    required: false
+    default: cycle_honeypots
   SSH_PUBLIC_KEY:
     description: 'Raw public key string to deployed to new honeypot servers. Ansible will use this to log into newly created servers.'
     required: true
@@ -13,6 +17,19 @@ inputs:
   AWS_SECRET_ACCESS_KEY:
     description: 'AWS Access Key Secret. Terraform will use this to authenticate and provision new honeypot servers.'
     required: true
+  THREATLIST_OUTPUT_S3_BUCKET_NAME:
+    description: 'Name of the s3 bucket to output the threatlist data to. Required if ACTION is "uptdate_threatlists."'
+    required: false
+  THREATLIST_OUTPUT_S3_FILE_NAME:
+    description: 'Name of the file to output the threatlist data to. Required if ACTION is "uptdate_threatlists."'
+    required: false
+  THREATLIST_QUERY_LTE:
+    description: 'Latest time (in Elastic Query Language) to aggregate results from. Defaults to "now."'
+    default: now
+    required: false
+  THREATLIST_QUERY_GTE:
+    description: 'Earliest time (in Elastic Query Language) to aggregate results from. Example: "now-1h."'
+
 runs:
   using: 'docker'
   image: 'Dockerfile'
