@@ -1,0 +1,18 @@
+name: 'Cycle Honeypots'
+description: 'Cycles Honeypot Servers'
+inputs:
+  SSH_PUBLIC_KEY:
+    description: 'Raw public key string to deployed to new honeypot servers. Ansible will use this to log into newly created servers.'
+    required: true
+  SSH_PRIVATE_KEY:
+    description: 'Raw private key string to authenticate to new honeypot servers. Ansible will use this to log into newly created servers.'
+    required: true
+    AWS_ACCESS_KEY_ID:
+  description: 'AWS Access Key ID. Terraform will use this to authenticate and provision new honeypot servers.'
+  required: true
+  AWS_SECRET_ACCESS_KEY:
+    description: 'AWS Access Key Secret. Terraform will use this to authenticate and provision new honeypot servers.'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
