@@ -6,7 +6,7 @@ on:
 
 jobs:
   cycle_honeypot_servers:
-    runs-on: alpine:3.4
+    runs-on: ubuntu-latest
     name: Cycles all honeypot servers
     steps:
     - name: honey_net
