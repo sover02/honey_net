@@ -7,8 +7,10 @@ jobs:
   refresh_threatlists-7-day-sample:
     runs-on: ubuntu-latest
     name: Refreshes threatlists every week
+    strategy:
+      matrix:
+        ACTION: [update_threatlists]
     steps:
-
     - name: update_7d-sample_threatlist
       uses: sover02/honey_net@separate_dockerfiles
       with:
@@ -24,6 +26,4 @@ jobs:
         THREATLIST_OUTPUT_S3_FILE_NAME: threatlist_7d_weekly_sample.csv 
         THREATLIST_QUERY_LTE: now
         THREATLIST_QUERY_GTE: now-7d
-        ACTION: update_threatlists
-      env:
-        ACTION: update_threatlists
+        ACTION: ${{ matrix.ACTION }}
