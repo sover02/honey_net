@@ -36,7 +36,7 @@ es_client = Elasticsearch(
 # Outputs a list of json objects containing threatlist data, one-per-item
 # Threatlist data contains `src_ip`, `last_seen`, and `count`.
 def query_elastic_honey_data(es_client, query_lte, query_gte):
-  s = Search(using=es_client, index="cowrie*")
+  s = Search(using=es_client, index="cowrie")
   s_range = {"range": { "@timestamp": {"lte": query_lte, "gte": query_gte}}}
   s_query = Q('wildcard', eventid='cowrie.login.*')
   s.query = Q('bool', must=[s_range, s_query])
