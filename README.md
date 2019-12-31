@@ -16,7 +16,7 @@ docker build -t sover02/honey_net_rotate-alpine:1.3 .
 
 Run this massive `docker run` command.
 
-```
+```bash
 docker run \
     -e "INPUT_AWS_ACCESS_KEY_ID=<aws access key>" \
     -e "INPUT_AWS_SECRET_ACCESS_KEY=<aws secret>" \
