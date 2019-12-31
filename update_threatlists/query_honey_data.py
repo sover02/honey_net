@@ -14,14 +14,14 @@ for section_k, section_v in conf.items():
     if directive_k in os.environ:
       conf[section_k][directive_k] = os.environ.get(directive_k)
 
-es_host = conf["elastic"]["es_host"]
-es_port = conf["elastic"]["es_port"]
-es_scheme = conf["elastic"]["es_scheme"]
-es_user = conf["elastic"]["es_user"]
-es_password = conf["elastic"]["es_password"]
+es_host = os.environ['INPUT_THREATLIST_ELASTICSEARCH_HOST']
+es_port = os.environ['INPUT_THREATLIST_ELASTICSEARCH_PORT']
+es_scheme = os.environ['INPUT_THREATLIST_ELASTICSEARCH_SCHEME']
+es_user = os.environ['INPUT_THREATLIST_ELASTICSEARCH_USER']
+es_password = os.environ['INPUT_THREATLIST_ELASTICSEARCH_PASSWORD']
 
-query_lte = conf["query"]["query_lte"]
-query_gte = conf["query"]["query_gte"]
+query_lte = os.environ['INPUT_THREATLIST_QUERY_LTE']
+query_gte = os.environ['INPUT_THREATLIST_QUERY_GTE']
 
 # ElasticSearch Instance info
 

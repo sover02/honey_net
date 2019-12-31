@@ -28,6 +28,23 @@ inputs:
     required: false
   THREATLIST_QUERY_GTE:
     description: 'Earliest time (in Elastic Query Language) to aggregate results from. Example: "now-1h."'
+    required: false
+  THREATLIST_ELASTICSEARCH_HOST:
+    description: 'Elasticsearch Host to retrieve honeypot events from.'
+    required: false
+  THREATLIST_ELASTICSEARCH_PORT:
+    description: 'Port to use when retrieving events from Elasticsearch.'
+    required: false
+  THREATLIST_ELASTICSEARCH_SCHEME:
+    description: 'HTTP or HTTPS.'
+    required: false
+  THREATLIST_ELASTICSEARCH_USER:
+    description: 'Username to authenticate to Elasticsearch host with.'
+    required: false
+  THREATLIST_ELASTICSEARCH_PASSWORD:
+    description: 'Password to authenticate to Elasticsearch host with.'
+    required: false
+
 
 runs:
   using: 'docker'
