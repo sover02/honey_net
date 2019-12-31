@@ -1,7 +1,7 @@
-on: #[push]
-  schedule:
-    # Run at 5am UTC, midnight EST
-    - cron:  '0 5 * * *'
+on: [push]
+  # schedule:
+  #   # Run at 5am UTC, midnight EST
+  #   - cron:  '0 5 * * *'
 
 jobs:
   cycle_honeypot_servers:
@@ -32,7 +32,6 @@ jobs:
         ELASTICSEARCH_SCHEME: ${{ secrets.ELASTICSEARCH_SCHEME }}
         ELASTICSEARCH_USER: ${{ secrets.ELASTICSEARCH_USER }}
         ELASTICSEARCH_PASSWORD: ${{ secrets.ELASTICSEARCH_PASSWORD }}
-        ACTION: cycle_honeypots
 
     - name: Slack Notify Complete
       uses: rtCamp/action-slack-notify@master

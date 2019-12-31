@@ -20,12 +20,6 @@ inputs:
     description: 'Default region for ansible.'
     required: false
     default: us-east-1
-  THREATLIST_OUTPUT_S3_BUCKET_NAME:
-    description: 'Name of the s3 bucket to output the threatlist data to. Required if ACTION is "uptdate_threatlists."'
-    required: false
-  THREATLIST_OUTPUT_S3_FILE_NAME:
-    description: 'Name of the file to output the threatlist data to. Required if ACTION is "uptdate_threatlists."'
-    required: false
   ELASTICSEARCH_HOST:
     description: 'Elasticsearch Host to retrieve honeypot events from.'
     required: false
@@ -41,16 +35,7 @@ inputs:
   ELASTICSEARCH_PASSWORD:
     description: 'Password to authenticate to Elasticsearch host with.'
     required: false
-  THREATLIST_QUERY_LTE:
-    description: 'Latest time (in Elastic Query Language) to aggregate results from. Defaults to "now."'
-    default: now
-    required: false
-  THREATLIST_QUERY_GTE:
-    description: 'Earliest time (in Elastic Query Language) to aggregate results from. Example: "now-1h."'
-    required: false
-
 
 runs:
   using: 'docker'
-  image: ${{ matrix.ACTION }}/Dockerfile
-  # if: ${{ input.ACTION == 'cycle_honeypots' }}
+  image: Dockerfile
