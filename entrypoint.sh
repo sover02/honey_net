@@ -26,10 +26,13 @@ if [ "$INPUT_DEV_MODE" != "true" ]; then
 fi
 
 if [ "$INPUT_ACTION" = "cycle_honeypots" ]; then
+    # Make terraform output more useful
+    export "TF_IN_AUTOMATION=1"
     # Run ansible playbook
     cd "$APP_PATH/ansible"
     ansible-playbook main.yml
     echo "honeypots cycled"
+
 elif [ "$INPUT_ACTION" = "update_threatlists" ]; then
     # Update threatlists
     cd "$APP_PATH/update_threatlists" && \
