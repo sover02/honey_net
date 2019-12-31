@@ -13,7 +13,7 @@ jobs:
       env:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         CHANNEL: '#honey_net'
-        USERNAME: Friendly honey_net Bot
+        USERNAME: Friendly Honey Net Bot
         ICON_EMOJI: ':bee:'
         TEXT: |
           *Cycling Honeypot Servers* :honey_pot: :cyclone:
@@ -47,7 +47,7 @@ jobs:
       env:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         CHANNEL: '#honey_net'
-        USERNAME: Friendly honey_net Bot
+        USERNAME: Friendly Honey Net Bot
         ICON_EMOJI: ':bee:'
         TEXT: |
           *Honeypot Server Cycle Completed* :honey_pot: :white_check_mark:
