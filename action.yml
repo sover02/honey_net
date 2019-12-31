@@ -16,6 +16,10 @@ inputs:
   AWS_SECRET_ACCESS_KEY:
     description: 'AWS Access Key Secret. Terraform will use this to authenticate and provision new honeypot servers.'
     required: true
+  AWS_DEFAULT_REGION:
+    description: 'Default region for ansible.'
+    required: false
+    default: us-east-1
   THREATLIST_OUTPUT_S3_BUCKET_NAME:
     description: 'Name of the s3 bucket to output the threatlist data to. Required if ACTION is "uptdate_threatlists."'
     required: false

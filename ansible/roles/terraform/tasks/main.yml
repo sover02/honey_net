@@ -13,7 +13,7 @@
     state: "present"
     force_init: true
     backend_config:
-      region: "us-east-1"
+      region: "{{ lookup('env','INPUT_AWS_DEFAULT_REGION') }}"
   register: tf_command
 
 - name: Add dynamically created ec2 instances to roles 
