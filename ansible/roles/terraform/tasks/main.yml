@@ -1,3 +1,7 @@
+- set_fact:
+  no_destroy: "{{ lookup('env','INPUT_TERRAFORM_NO_DESTROY') }}"
+  destroy_only: "{{ lookup('env','INPUT_TERRAFORM_DESTROY_ONLY') }}"
+
 - name: Run Terraform Destroy
   terraform:
     project_path: "../terraform"
@@ -5,7 +9,7 @@
     force_init: true
     backend_config:
       region: "us-east-1"
-  when: not no_refresh or no_refresh is not defined
+  when: not no_destroy or no_destroy is not defined
 
 - name: Run Terraform Apply
   terraform:
@@ -15,6 +19,7 @@
     backend_config:
       region: "{{ lookup('env','INPUT_AWS_DEFAULT_REGION') }}"
   register: tf_command
+  when: not destroy_only or destroy_only is not defined
 
 - name: Add dynamically created ec2 instances to roles 
   with_subelements: 
@@ -23,3 +28,4 @@
   add_host:
     name: "{{ item[1] }}"
     group: "ssh_honeypot"
+  when: not destroy_only or destroy_only is not defined
