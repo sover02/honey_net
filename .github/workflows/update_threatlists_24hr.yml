@@ -1,0 +1,41 @@
+on: [push]
+  # schedule: [push]
+  #   # Run at 5am UTC, midnight EST [push]
+  #   - cron:  '0 5 * *  [push]*'
+
+jobs:
+  refresh_threatlists:
+    runs-on: ubuntu-latest
+    name: Refreshes threatlists every 24 hours
+    steps:
+
+    - name: Slack Notify Started
+      uses: rtCamp/action-slack-notify@master
+      env:
+        SLACK_CHANNEL: honey_net
+        SLACK_COLOR: '#3278BD'
+        SLACK_MESSAGE: 'Updating Honey Pot Threatlists (24 hr):cyclone:'
+        SLACK_TITLE: Threatlist Update Started
+        SLACK_USERNAME: Friendly honey_net Bot
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+
+    - name: honey_net
+      uses: sover02/honey_net@master
+      with:
+        SSH_PUBLIC_KEY: ${{ secrets.SSH_PUBLIC_KEY }}
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        THREATLIST_OUTPUT_S3_BUCKET_NAME: tf-honey-net-threat-list
+        THREATLIST_OUTPUT_S3_FILE_NAME: threatlist_24hr.csv
+
+
+    - name: Slack Notify Complete
+      uses: rtCamp/action-slack-notify@master
+      env:
+        SLACK_CHANNEL: honey_net
+        SLACK_COLOR: '#3278BD'
+        SLACK_MESSAGE: 'Threatlist (24 hr) has been update! :cyclone:'
+        SLACK_TITLE: Threatlist Update Completed (24hr)
+        SLACK_USERNAME: Friendly honey_net Bot
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
