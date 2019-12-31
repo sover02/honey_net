@@ -1,23 +1,33 @@
-on: #[push]
-  schedule:
-    # Run at 5am UTC, midnight EST
-    - cron:  '0 5 * * *'
+on: [push]
+  # schedule:
+  #   # Run at 5am UTC, midnight EST
+  #   - cron:  '0 5 * * *'
 
 jobs:
   cycle_honeypot_servers:
     runs-on: ubuntu-latest
-    name: Cycles all honeypot servers
+    name: Cycle All Honeypot Servers
     steps:
 
-    - name: Slack Notify Started
-      uses: rtCamp/action-slack-notify@master
+    - name: Send Slack Notification
       env:
-        SLACK_CHANNEL: honey_net
-        SLACK_COLOR: '#3278BD'
-        SLACK_MESSAGE: 'Honeypot Servers have begun cycling! :cyclone:'
-        SLACK_TITLE: Honeypot Servers Cycle Started
-        SLACK_USERNAME: Friendly honey_net Bot
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        CHANNEL: '#honey_net'
+        USERNAME: Friendly honey_net Bot
+        ICON_EMOJI: ':bee:'
+        TEXT: |
+          *Cycling Honeypot Servers* :honey_pot: :cyclone:
+          Job: _Cycle All Honeypot Servers_
+      run: |
+        curl -v -X POST --data-urlencode \
+          "payload={
+            \"channel\": \"$CHANNEL\",
+            \"username\": \"$USERNAME\",
+            \"text\": \"$TEXT\",
+            \"icon_emoji\": \"$ICON_EMOJI\"
+          }" \
+          $SLACK_WEBHOOK
+
 
     - name: honey_net
       uses: sover02/honey_net@master
@@ -27,19 +37,27 @@ jobs:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_DEFAULT_REGION: 'us-east-1'
-        THREATLIST_ELASTICSEARCH_HOST: ${{ secrets.THREATLIST_ELASTICSEARCH_HOST }}
-        THREATLIST_ELASTICSEARCH_PORT: ${{ secrets.THREATLIST_ELASTICSEARCH_PORT }}
-        THREATLIST_ELASTICSEARCH_SCHEME: ${{ secrets.THREATLIST_ELASTICSEARCH_SCHEME }}
-        THREATLIST_ELASTICSEARCH_USER: ${{ secrets.THREATLIST_ELASTICSEARCH_USER }}
-        THREATLIST_ELASTICSEARCH_PASSWORD: ${{ secrets.THREATLIST_ELASTICSEARCH_PASSWORD }}
-        ACTION: cycle_honeypots
+        ELASTICSEARCH_HOST: ${{ secrets.ELASTICSEARCH_HOST }}
+        ELASTICSEARCH_PORT: ${{ secrets.ELASTICSEARCH_PORT }}
+        ELASTICSEARCH_SCHEME: ${{ secrets.ELASTICSEARCH_SCHEME }}
+        ELASTICSEARCH_USER: ${{ secrets.ELASTICSEARCH_USER }}
+        ELASTICSEARCH_PASSWORD: ${{ secrets.ELASTICSEARCH_PASSWORD }}
 
-    - name: Slack Notify Complete
-      uses: rtCamp/action-slack-notify@master
+    - name: Send Slack Notification
       env:
-        SLACK_CHANNEL: honey_net
-        SLACK_COLOR: '#3278BD'
-        SLACK_MESSAGE: 'Honeypot Servers have been cycled! :honeybee: :honey_pot:'
-        SLACK_TITLE: Honeypot Servers Cycle Complete
-        SLACK_USERNAME: Friendly honey_net Bot
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        CHANNEL: '#honey_net'
+        USERNAME: Friendly honey_net Bot
+        ICON_EMOJI: ':bee:'
+        TEXT: |
+          *Honeypot Server Cycle Completed* :honey_pot: :white_check_mark:
+          Job: _Cycle All Honeypot Servers_
+      run: |
+        curl -v -X POST --data-urlencode \
+          "payload={
+            \"channel\": \"$CHANNEL\",
+            \"username\": \"$USERNAME\",
+            \"text\": \"$TEXT\",
+            \"icon_emoji\": \"$ICON_EMOJI\"
+          }" \
+          $SLACK_WEBHOOK

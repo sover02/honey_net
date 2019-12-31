@@ -20,36 +20,22 @@ inputs:
     description: 'Default region for ansible.'
     required: false
     default: us-east-1
-  THREATLIST_OUTPUT_S3_BUCKET_NAME:
-    description: 'Name of the s3 bucket to output the threatlist data to. Required if ACTION is "uptdate_threatlists."'
-    required: false
-  THREATLIST_OUTPUT_S3_FILE_NAME:
-    description: 'Name of the file to output the threatlist data to. Required if ACTION is "uptdate_threatlists."'
-    required: false
-  THREATLIST_QUERY_LTE:
-    description: 'Latest time (in Elastic Query Language) to aggregate results from. Defaults to "now."'
-    default: now
-    required: false
-  THREATLIST_QUERY_GTE:
-    description: 'Earliest time (in Elastic Query Language) to aggregate results from. Example: "now-1h."'
-    required: false
-  THREATLIST_ELASTICSEARCH_HOST:
+  ELASTICSEARCH_HOST:
     description: 'Elasticsearch Host to retrieve honeypot events from.'
     required: false
-  THREATLIST_ELASTICSEARCH_PORT:
+  ELASTICSEARCH_PORT:
     description: 'Port to use when retrieving events from Elasticsearch.'
     required: false
-  THREATLIST_ELASTICSEARCH_SCHEME:
+  ELASTICSEARCH_SCHEME:
     description: 'HTTP or HTTPS.'
     required: false
-  THREATLIST_ELASTICSEARCH_USER:
+  ELASTICSEARCH_USER:
     description: 'Username to authenticate to Elasticsearch host with.'
     required: false
-  THREATLIST_ELASTICSEARCH_PASSWORD:
+  ELASTICSEARCH_PASSWORD:
     description: 'Password to authenticate to Elasticsearch host with.'
     required: false
 
-
 runs:
   using: 'docker'
-  image: 'Dockerfile'
+  image: Dockerfile
