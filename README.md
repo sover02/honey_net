@@ -63,3 +63,9 @@ docker run \
 ```
 
 This will deploy one honeypot server in each region, except us-east-1, which is commented out. To select which locations, comment out or uncomment blocks in ./terraform/honeypot_instances.tf
+
+## Teardown
+
+You can destroy all servers without rebuilding them by passing the "INPUT_TERRAFORM_DESTROY_ONLY" flag to the docker container.
+
+Just add `-e "INPUT_TERRAFORM_DESTROY_ONLY=true"` as one of the variables to the above command.
