@@ -4,6 +4,37 @@ Github action and docker container to deploy a honeypot network in AWS.
 
 Powers: https://intercept.sh/threatlists/
 
+## Using the Github Action
+
+Example:
+
+```yml
+on:
+  schedule:
+    # Run at 5am UTC, midnight EST
+    - cron:  '0 5 * * *'
+
+jobs:
+  cycle_honeypot_servers:
+    runs-on: ubuntu-latest
+    name: Cycle All Honeypot Servers
+    steps:
+    
+    - name: honey_net
+      uses: sover02/honey_net@master
+      with:
+        SSH_PUBLIC_KEY: ${{ secrets.SSH_PUBLIC_KEY }}
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_DEFAULT_REGION: 'us-east-1'
+        ELASTICSEARCH_HOST: ${{ secrets.ELASTICSEARCH_HOST }}
+        ELASTICSEARCH_PORT: ${{ secrets.ELASTICSEARCH_PORT }}
+        ELASTICSEARCH_SCHEME: ${{ secrets.ELASTICSEARCH_SCHEME }}
+        ELASTICSEARCH_USER: ${{ secrets.ELASTICSEARCH_USER }}
+        ELASTICSEARCH_PASSWORD: ${{ secrets.ELASTICSEARCH_PASSWORD }}
+```
+
 ## Running Locally
 
 To start, clone the repo and build the image.
