@@ -156,12 +156,12 @@ setup.kibana:
 #-------------------------- Elasticsearch output ------------------------------
 output.elasticsearch:
   # Array of hosts to connect to.
-  hosts: ["http://elastic.job.pizza:19200"]
+  hosts: ["{{ elastic_host }}:{{ elastic_port }}"]
 
   # Optional protocol and basic auth credentials.
-  protocol: "http"
-  username: "elastic"
-  password: "qPgYrMmQazbE8bhgWeskVx"
+  protocol: "{{ elastic_scheme }}"
+  username: "{{ elastic_user }}"
+  password: "{{ elastic_password }}"
 
 #================================ Processors =====================================
 
