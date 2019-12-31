@@ -2,15 +2,14 @@ name: 'Cycle Honeypots'
 description: 'Cycles Honeypot Servers'
 inputs:
   ACTION:
-    description: '"cycle_honeypots" to cycle honeypots, or "update_threatlists" to update threatlists. Defaults to "cycle_honeypots"'
-    required: false
-    default: cycle_honeypots
+    description: '"cycle_honeypots" to cycle honeypots, or "update_threatlists" to update threatlists.'
+    required: true
   SSH_PUBLIC_KEY:
     description: 'Raw public key string to deployed to new honeypot servers. Ansible will use this to log into newly created servers.'
-    required: true
+    required: false
   SSH_PRIVATE_KEY:
     description: 'Raw private key string to authenticate to new honeypot servers. Ansible will use this to log into newly created servers.'
-    required: true
+    required: false
   AWS_ACCESS_KEY_ID:
     description: 'AWS Access Key ID. Terraform will use this to authenticate and provision new honeypot servers.'
     required: true
