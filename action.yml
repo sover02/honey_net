@@ -52,5 +52,5 @@ inputs:
 
 runs:
   using: 'docker'
-  image: ${{ inputs.ACTION }}/Dockerfile
+  image: ${{ env.ACTION }}/Dockerfile
   # if: ${{ input.ACTION == 'cycle_honeypots' }}

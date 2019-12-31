@@ -25,3 +25,5 @@ jobs:
         THREATLIST_QUERY_LTE: now
         THREATLIST_QUERY_GTE: now-7d
         ACTION: update_threatlists
+      env:
+        ACTION: update_threatlists
