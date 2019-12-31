@@ -1,36 +1,33 @@
 # honey_net
 
-To start, create your virtual environment, activate it, and then install necessary pip modules.
+Github action and docker container to deploy a honeypot network in AWS.
 
-```
-virtualenv ~/.venvs/github_honey_net
-. ~/.venvs/github_honey_net/bin/activate
-pip install -r requirements.txt
-```
+Powers: Pulls incremental data to power: https://intercept.sh/threatlists/
 
-Make sure your AWS cli is configured.
+Notifications are sent to slack.
 
-```
-aws login
-```
+## Running Locally
 
-Configure group_vars - set up the logstash host and ssh key info
-```
-cd ./ansible
-vim group_vars/all
+To start, clone the repo and build the image.
+
+```bash
+git clone git@github.com:sover02/honey_net.git
+cd honey_net
+docker build -t sover02/honey_net_rotate-alpine:1.3 .
 ```
 
-After that, you can run the ansible playbook.
+Run this massive `docker run` command.
 
 ```
-cd ansible
-ansible-playbook main.yml
+docker run \
+    -e "INPUT_AWS_ACCESS_KEY_ID=<aws access key>" \
+    -e "INPUT_AWS_SECRET_ACCESS_KEY=<aws secret>" \
+    -e "INPUT_AWS_DEFAULT_REGION=<aws default region>" \
+    -e "INPUT_ELASTICSEARCH_HOST=<elastic host>" \
+    -e "INPUT_ELASTICSEARCH_PORT=<elastic port>" \
+    -e "INPUT_ELASTICSEARCH_SCHEME=<elastic scheme (HTTP of HTTPS)>" \ 
+    -e "INPUT__ELASTICSEARCH_USER=<elastic user>" \
+    -e "INPUT_ELASTICSEARCH_PASSWORD=<elastic password>"
 ```
 
 This will deploy one honeypot server in each region, except us-east-1, which is commented out. To select which locations, comment out or uncomment blocks in ./terraform/honeypot_instances.tf
-
-To tear down:
-```
-cd ./terraform
-terraform destroy
-```
