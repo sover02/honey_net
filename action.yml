@@ -26,6 +26,21 @@ inputs:
   THREATLIST_OUTPUT_S3_FILE_NAME:
     description: 'Name of the file to output the threatlist data to. Required if ACTION is "uptdate_threatlists."'
     required: false
+  ELASTICSEARCH_HOST:
+    description: 'Elasticsearch Host to retrieve honeypot events from.'
+    required: false
+  ELASTICSEARCH_PORT:
+    description: 'Port to use when retrieving events from Elasticsearch.'
+    required: false
+  ELASTICSEARCH_SCHEME:
+    description: 'HTTP or HTTPS.'
+    required: false
+  ELASTICSEARCH_USER:
+    description: 'Username to authenticate to Elasticsearch host with.'
+    required: false
+  ELASTICSEARCH_PASSWORD:
+    description: 'Password to authenticate to Elasticsearch host with.'
+    required: false
   THREATLIST_QUERY_LTE:
     description: 'Latest time (in Elastic Query Language) to aggregate results from. Defaults to "now."'
     default: now
@@ -33,23 +48,8 @@ inputs:
   THREATLIST_QUERY_GTE:
     description: 'Earliest time (in Elastic Query Language) to aggregate results from. Example: "now-1h."'
     required: false
-  THREATLIST_ELASTICSEARCH_HOST:
-    description: 'Elasticsearch Host to retrieve honeypot events from.'
-    required: false
-  THREATLIST_ELASTICSEARCH_PORT:
-    description: 'Port to use when retrieving events from Elasticsearch.'
-    required: false
-  THREATLIST_ELASTICSEARCH_SCHEME:
-    description: 'HTTP or HTTPS.'
-    required: false
-  THREATLIST_ELASTICSEARCH_USER:
-    description: 'Username to authenticate to Elasticsearch host with.'
-    required: false
-  THREATLIST_ELASTICSEARCH_PASSWORD:
-    description: 'Password to authenticate to Elasticsearch host with.'
-    required: false
 
 
 runs:
   using: 'docker'
-  image: 'Dockerfile'
+  image: "${{ inputs.ACTION }}/Dockerfile"

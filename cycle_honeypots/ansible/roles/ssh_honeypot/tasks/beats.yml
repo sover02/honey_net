@@ -23,11 +23,11 @@
     group: root
     mode: 0600
   vars:
-    elastic_host: "{{ lookup('env','INPUT_THREATLIST_ELASTICSEARCH_HOST') }}"
-    elastic_port: "{{ lookup('env','INPUT_THREATLIST_ELASTICSEARCH_PORT') }}"
-    elastic_scheme: "{{ lookup('env','INPUT_THREATLIST_ELASTICSEARCH_SCHEME') }}"
-    elastic_user: "{{ lookup('env','INPUT_THREATLIST_ELASTICSEARCH_USER') }}"
-    elastic_password: "{{ lookup('env','INPUT_THREATLIST_ELASTICSEARCH_PASSWORD') }}"
+    elastic_host: "{{ lookup('env','INPUT_ELASTICSEARCH_HOST') }}"
+    elastic_port: "{{ lookup('env','INPUT_ELASTICSEARCH_PORT') }}"
+    elastic_scheme: "{{ lookup('env','INPUT_ELASTICSEARCH_SCHEME') }}"
+    elastic_user: "{{ lookup('env','INPUT_ELASTICSEARCH_USER') }}"
+    elastic_password: "{{ lookup('env','INPUT_ELASTICSEARCH_PASSWORD') }}"
   notify: restart filebeat
     
 - name: Force a restart if configuration has changed

@@ -1,7 +1,7 @@
-on: #[push]
-  schedule: 
-    # Runs every Saturday
-    - cron: '0 0 * * SAT'
+on: [push]
+  # schedule: 
+  #   # Runs every Saturday
+  #   - cron: '0 0 * * SAT'
 
 jobs:
   refresh_threatlists-7-day-sample:
@@ -10,16 +10,16 @@ jobs:
     steps:
 
     - name: update_7d-sample_threatlist
-      uses: sover02/honey_net@master
+      uses: sover02/honey_net@separate_dockerfiles
       with:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_DEFAULT_REGION: 'us-east-1'
-        THREATLIST_ELASTICSEARCH_HOST: ${{ secrets.THREATLIST_ELASTICSEARCH_HOST }}
-        THREATLIST_ELASTICSEARCH_PORT: ${{ secrets.THREATLIST_ELASTICSEARCH_PORT }}
-        THREATLIST_ELASTICSEARCH_SCHEME: ${{ secrets.THREATLIST_ELASTICSEARCH_SCHEME }}
-        THREATLIST_ELASTICSEARCH_USER: ${{ secrets.THREATLIST_ELASTICSEARCH_USER }}
-        THREATLIST_ELASTICSEARCH_PASSWORD: ${{ secrets.THREATLIST_ELASTICSEARCH_PASSWORD }}
+        ELASTICSEARCH_HOST: ${{ secrets.ELASTICSEARCH_HOST }}
+        ELASTICSEARCH_PORT: ${{ secrets.ELASTICSEARCH_PORT }}
+        ELASTICSEARCH_SCHEME: ${{ secrets.ELASTICSEARCH_SCHEME }}
+        ELASTICSEARCH_USER: ${{ secrets.ELASTICSEARCH_USER }}
+        ELASTICSEARCH_PASSWORD: ${{ secrets.ELASTICSEARCH_PASSWORD }}
         THREATLIST_OUTPUT_S3_BUCKET_NAME: tf-honey-net-threat-list
         THREATLIST_OUTPUT_S3_FILE_NAME: threatlist_7d_weekly_sample.csv 
         THREATLIST_QUERY_LTE: now

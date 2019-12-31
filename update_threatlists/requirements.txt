@@ -1,6 +1,4 @@
-ansible
 polling
-configobj
 elasticsearch
 elasticsearch_dsl
 certifi
