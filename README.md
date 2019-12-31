@@ -4,7 +4,7 @@ Github action and docker container to deploy a honeypot network in AWS.
 
 Powers: https://intercept.sh/threatlists/
 
-Data retrieved and collected by: https://github.com/sover02/honey_net_update_threatlists/actions
+Data retrieved, formatted, and uploaded by: https://github.com/sover02/honey_net_update_threatlists/actions
 
 ## Using the Github Action
 
