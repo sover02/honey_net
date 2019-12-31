@@ -28,7 +28,6 @@ jobs:
           }" \
           $SLACK_WEBHOOK
 
-
     - name: honey_net
       uses: sover02/honey_net@master
       with:
