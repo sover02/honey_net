@@ -1,7 +1,7 @@
-on: [push]
-  # schedule:
-  #   # Run at 5am UTC, midnight EST
-  #   - cron:  '0 5 * * *'
+on: #[push]
+  schedule:
+    # Run at 5am UTC, midnight EST
+    - cron:  '0 5 * * *'
 
 jobs:
   cycle_honeypot_servers:
@@ -19,7 +19,7 @@ jobs:
           *Cycling Honeypot Servers* :honey_pot: :cyclone:
           Job: _Cycle All Honeypot Servers_
       run: |
-        curl -v -X POST --data-urlencode \
+        curl -s -X POST --data-urlencode \
           "payload={
             \"channel\": \"$CHANNEL\",
             \"username\": \"$USERNAME\",
@@ -53,7 +53,7 @@ jobs:
           *Honeypot Server Cycle Completed* :honey_pot: :white_check_mark:
           Job: _Cycle All Honeypot Servers_
       run: |
-        curl -v -X POST --data-urlencode \
+        curl -s -X POST --data-urlencode \
           "payload={
             \"channel\": \"$CHANNEL\",
             \"username\": \"$USERNAME\",
