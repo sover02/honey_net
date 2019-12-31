@@ -5,8 +5,8 @@ output_s3_file_name=$INPUT_THREATLIST_OUTPUT_S3_FILE_NAME
 output_s3_bucket_name=$INPUT_THREATLIST_OUTPUT_S3_BUCKET_NAME
 
 if [ "$INPUT_DEV_MODE" != "true" ]; then
-    query_lte=$INPUT_THREATLIST_QUERY_LTE
-    query_gte=$INPUT_THREATLIST_QUERY_GTE
+    export query_lte=$INPUT_THREATLIST_QUERY_LTE
+    export query_gte=$INPUT_THREATLIST_QUERY_GTE
 fi
 
 if [ "$INPUT_DEV_MODE" = "true" ]; then
