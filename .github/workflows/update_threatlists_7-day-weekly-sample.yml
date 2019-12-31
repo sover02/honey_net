@@ -1,7 +1,7 @@
-on: [push]
-  # schedule: 
-  #   # Runs every Saturday
-  #   - cron: '0 0 * * SAT'
+on: # [push]
+  schedule: 
+    # Runs every Saturday
+    - cron: '0 0 * * SAT'
 
 jobs:
   refresh_threatlists-7-day-sample:
