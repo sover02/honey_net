@@ -4,8 +4,6 @@ Github action and docker container to deploy a honeypot network in AWS.
 
 Powers: Pulls incremental data to power: https://intercept.sh/threatlists/
 
-Notifications are sent to slack.
-
 ## Running Locally
 
 To start, clone the repo and build the image.
@@ -26,7 +24,7 @@ docker run \
     -e "INPUT_ELASTICSEARCH_HOST=<elastic host>" \
     -e "INPUT_ELASTICSEARCH_PORT=<elastic port>" \
     -e "INPUT_ELASTICSEARCH_SCHEME=<elastic scheme (HTTP of HTTPS)>" \ 
-    -e "INPUT__ELASTICSEARCH_USER=<elastic user>" \
+    -e "INPUT_ELASTICSEARCH_USER=<elastic user>" \
     -e "INPUT_ELASTICSEARCH_PASSWORD=<elastic password>" \
     sover02/honey_net_rotate-alpine:1.3
 ```
