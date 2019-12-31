@@ -22,5 +22,3 @@ RUN pip3 install --upgrade setuptools pip wheel && \
 COPY . .
 
 ENTRYPOINT ["/app/entrypoint.sh"]
-
-
