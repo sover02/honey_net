@@ -2,7 +2,7 @@
 
 Github action and docker container to deploy a honeypot network in AWS.
 
-Powers: Pulls incremental data to power: https://intercept.sh/threatlists/
+Powers: https://intercept.sh/threatlists/
 
 ## Running Locally
 
