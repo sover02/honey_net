@@ -2,8 +2,8 @@
 - name: Add FileBeat repository
   yum_repository:
     name: filebeat-7.x
-    description: FileBeat repository for 7.x packages
-    baseurl: https://artifacts.elastic.co/packages/7.x/yum
+    description: FileBeat repository for Open Source 7.x packages
+    baseurl: https://artifacts.elastic.co/packages/oss-7.x/yum
     gpgcheck: yes
     gpgkey: https://artifacts.elastic.co/GPG-KEY-elasticsearch
     enabled: yes
