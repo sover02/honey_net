@@ -27,7 +27,8 @@ docker run \
     -e "INPUT_ELASTICSEARCH_PORT=<elastic port>" \
     -e "INPUT_ELASTICSEARCH_SCHEME=<elastic scheme (HTTP of HTTPS)>" \ 
     -e "INPUT__ELASTICSEARCH_USER=<elastic user>" \
-    -e "INPUT_ELASTICSEARCH_PASSWORD=<elastic password>"
+    -e "INPUT_ELASTICSEARCH_PASSWORD=<elastic password>" \
+    sover02/honey_net_rotate-alpine:1.3
 ```
 
 This will deploy one honeypot server in each region, except us-east-1, which is commented out. To select which locations, comment out or uncomment blocks in ./terraform/honeypot_instances.tf
