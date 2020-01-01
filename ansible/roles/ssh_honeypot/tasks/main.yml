@@ -1,14 +1,8 @@
 ---
 - name: OS configuration
-  import_tasks: os.yml
-
-# Have to do this first, so we can free up port 22
-- name: Let's swap SSH Ports!
-  import_tasks: ssh_port_swap.yml
-
-- name: Start the Docker party
-  import_tasks: docker.yml
-
-- name: Start shipping logs to Logstash
-  import_tasks: beats.yml
-  
+  include_tasks: "{{ item }}"
+  loop:
+    - os.yml
+    - ssh_port_swap.yml
+    - docker.yml
+    - beats.yml

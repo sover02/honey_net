@@ -54,6 +54,7 @@ docker run \
     -e "INPUT_AWS_ACCESS_KEY_ID=<aws access key>" \
     -e "INPUT_AWS_SECRET_ACCESS_KEY=<aws secret>" \
     -e "INPUT_AWS_DEFAULT_REGION=<aws default region>" \
+    -e "INPUT_AWS_S3_TF_STATE_BUCKET=<name of s3 bucket to use for terraform state>" \
     -e "INPUT_ELASTICSEARCH_HOST=<elastic host>" \
     -e "INPUT_ELASTICSEARCH_PORT=<elastic port>" \
     -e "INPUT_ELASTICSEARCH_SCHEME=<elastic scheme (HTTP of HTTPS)>" \ 

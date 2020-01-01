@@ -1,15 +1,12 @@
 name: 'Cycle Honeypots'
 description: 'Cycles Honeypot Servers'
 inputs:
-  ACTION:
-    description: '"cycle_honeypots" to cycle honeypots, or "update_threatlists" to update threatlists.'
-    required: true
   SSH_PUBLIC_KEY:
     description: 'Raw public key string to deployed to new honeypot servers. Ansible will use this to log into newly created servers.'
-    required: false
+    required: true
   SSH_PRIVATE_KEY:
     description: 'Raw private key string to authenticate to new honeypot servers. Ansible will use this to log into newly created servers.'
-    required: false
+    required: true
   AWS_ACCESS_KEY_ID:
     description: 'AWS Access Key ID. Terraform will use this to authenticate and provision new honeypot servers.'
     required: true
@@ -20,6 +17,17 @@ inputs:
     description: 'Default region for ansible.'
     required: false
     default: us-east-1
+  AWS_S3_TF_STATE_BUCKET:
+    description: 'AWS s3 bucket for Terraform to store the statefile in. Ansible will create this if it does not already exist.'
+    required: true
+  AWS_HONEYPOT_REGIONS:
+    description: 'Comma-separated list of aws regions to deploy honeypot servers to. Default: "eu-central-1,eu-north-1"'
+    required: false
+    default: 'eu-central-1,eu-north-1'
+  HONEYPOT_SERVERS_PER_REGION:
+      description: 'Number of honeypot servers to deploy for each region.'
+      required: false
+      default: 1
   ELASTICSEARCH_HOST:
     description: 'Elasticsearch Host to retrieve honeypot events from.'
     required: false
