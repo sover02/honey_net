@@ -21,7 +21,6 @@
   template:
     src: honey_net.tf.j2
     dest: "{{ terraform_work_dir }}/honey_net-{{ item }}.tf"
-  loop: "{{ aws_honeypot_regions }}"
   
 - name: Run Terraform Destroy
   terraform:

@@ -12,3 +12,23 @@ terraform {
 provider "aws" {
   region = "{{ aws_default_region }}"
 }
+
+{% for region in aws_all_deployable_regions %}
+# Establish region providers aliases
+provider "aws" {
+  alias  = "{{ region }}"
+  region = "{{ region }}"
+}
+{% endfor %}
+
+
+{% for region in aws_honeypot_regions %}
+module "honey_pot_{{ item }}" {
+  source = "./honey_net_instance"
+  providers = {
+    aws = "aws.{{ item }}"
+  }
+  number = {{ honeypot_servers_per_region }}
+}
+output "honey_pot_ip_addresses_{{ item }}" { value = module.honey_pot_{{ item }}.public_ip }
+{% endfor %}

@@ -1,9 +1,3 @@
-# Establish multiple region provider
-provider "aws" {
-  alias  = "{{ item }}"
-  region = "{{ item }}"
-}
-
 module "honey_pot_{{ item }}" {
   source = "./honey_net_instance"
   providers = {
