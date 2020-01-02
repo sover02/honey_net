@@ -1,8 +1,34 @@
-module "honey_pot_{{ item }}" {
+# Use s3 Backend
+terraform {
+  backend "s3" {
+    bucket = "{{ aws_s3_tf_state_bucket }}"
+    key    = "honey_net/key"
+    region = "{{ aws_default_region }}"
+  }
+}
+
+# Establish default region provider
+# Will be overridden by other aliases
+provider "aws" {
+  region = "{{ aws_default_region }}"
+}
+
+{% for region in aws_all_deployable_regions %}
+# Establish region providers aliases
+provider "aws" {
+  alias  = "{{ region }}"
+  region = "{{ region }}"
+}
+{% endfor %}
+
+
+{% for region in aws_honeypot_regions %}
+module "honey_pot_{{ region }}" {
   source = "./honey_net_instance"
   providers = {
-    aws = "aws.{{ item }}"
+    aws = "aws.{{ region }}"
   }
   number = {{ honeypot_servers_per_region }}
 }
-output "honey_pot_ip_addresses_{{ item }}" { value = module.honey_pot_{{ item }}.public_ip }
+output "honey_pot_ip_addresses_{{ region }}" { value = module.honey_pot_{{ region }}.public_ip }
+{% endfor %}
