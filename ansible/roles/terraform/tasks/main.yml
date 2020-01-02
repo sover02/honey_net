@@ -20,7 +20,7 @@
 - name: Create Terraform honey_net tf files
   template:
     src: honey_net.tf.j2
-    dest: "{{ terraform_work_dir }}/honey_net-{{ item }}.tf"
+    dest: "{{ terraform_work_dir }}/honey_net.tf"
   
 - name: Run Terraform Destroy
   terraform:
