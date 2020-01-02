@@ -45,7 +45,7 @@ To start, clone the repo and build the image.
 ```bash
 git clone git@github.com:sover02/honey_net.git
 cd honey_net
-docker build -t sover02/honey_net_rotate-alpine:1.3 .
+docker build -t sover02/honey_net_rotate-alpine:1.4 .
 ```
 
 Run this massive `docker run` command.
@@ -62,7 +62,7 @@ docker run \
     -e "INPUT_ELASTICSEARCH_USER=<elastic user>" \
     -e "INPUT_ELASTICSEARCH_PASSWORD=<elastic password>" \
     -e "INPUT_ELASTICSEARCH_INDEX_PREFIX=<elasticsearch index prefix to send data to>" \
-    sover02/honey_net_rotate-alpine:1.3
+    sover02/honey_net_rotate-alpine:1.4
 ```
 
 This will deploy one honeypot server in each region, except us-east-1, which is commented out. To select which locations, comment out or uncomment blocks in ./terraform/honeypot_instances.tf
