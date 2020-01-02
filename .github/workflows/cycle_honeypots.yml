@@ -1,4 +1,4 @@
-on: [push] #forcing push
+on: [push] # forcing push
   # schedule:
   #   # Run at 5am UTC, midnight EST
   #   - cron:  '0 5 * * *'
