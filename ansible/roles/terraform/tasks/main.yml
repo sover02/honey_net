@@ -12,12 +12,7 @@
     name: "{{ aws_s3_tf_state_bucket }}"
     state: present
 
-- name: Create Terraform Backend Config File
-  template:
-    src: terraform_backend.tf.j2
-    dest: "{{ terraform_work_dir }}/terraform_backend.tf"
-
-- name: Create Terraform honey_net tf files
+- name: Create Terraform honey_net tf config
   template:
     src: honey_net.tf.j2
     dest: "{{ terraform_work_dir }}/honey_net.tf"
