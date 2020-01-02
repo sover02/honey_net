@@ -27,6 +27,8 @@
   terraform:
     project_path: "{{ terraform_work_dir }}"
     state: "absent"
+    lock: yes
+    lock_timeout: 5
     force_init: true
     backend_config:
       region: "{{ aws_default_region }}"
@@ -36,6 +38,8 @@
   terraform:
     project_path: "{{ terraform_work_dir }}"
     state: "present"
+    lock: yes
+    lock_timeout: 5
     force_init: true
     backend_config:
       region: "{{ aws_default_region }}"
