@@ -32,7 +32,20 @@
     group: root
     mode: 0600
   notify: restart filebeat
-    
+
+- name: Enable the geoip pipeline on the elastic server
+  uri:
+    url: "{{ elastic_scheme }}://{{ elastic_host }}:{{ elastic_port }}/_ingest/pipeline/geoip"
+    user: "{{ elastic_user }}"
+    password: "{{ elastic_password }}"
+    method: PUT
+    body: "{{ lookup('file','geoip-pipeline.json') }}"
+    force_basic_auth: yes
+    status_code: 200
+    body_format: json
+  run_once: yes
+  delegate_to: '127.0.0.1'
+
 - name: Force a restart if configuration has changed
   meta: flush_handlers
 

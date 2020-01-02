@@ -163,6 +163,7 @@ output.elasticsearch:
   password: "{{ elastic_password }}"
 
   index: "{{ elastic_index_prefix }}-%{[agent.version]}-%{+yyyy.MM.dd}"
+  pipeline: "geoip"
 
 setup.template.name: "{{ elastic_index_prefix }}"
 setup.template.pattern: "{{ elastic_index_prefix }}-*"
