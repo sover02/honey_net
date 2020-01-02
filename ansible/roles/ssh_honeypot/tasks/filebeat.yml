@@ -15,6 +15,15 @@
     state: latest
     lock_timeout: 60
 
+- name: Copy ILM policy
+  copy:
+    src: honey-net-ilm-policy.json
+    dest: /etc/filebeat/filebeat.yml
+    owner: root
+    group: root
+    mode: 0600
+  notify: restart filebeat
+
 - name: Configure filebeat
   template:
     src: filebeat.yml.j2

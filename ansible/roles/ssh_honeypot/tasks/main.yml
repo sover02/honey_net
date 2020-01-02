@@ -5,4 +5,4 @@
     - os.yml
     - ssh_port_swap.yml
     - docker.yml
-    - beats.yml
+    - filebeat.yml

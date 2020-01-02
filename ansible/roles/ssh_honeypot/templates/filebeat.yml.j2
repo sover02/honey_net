@@ -166,7 +166,12 @@ output.elasticsearch:
 
 setup.template.name: "{{ elastic_index_prefix }}"
 setup.template.pattern: "{{ elastic_index_prefix }}-*"
-setup.ilm.enabled: false
+setup.ilm.enabled: auto
+setup.ilm.policy_name: "honey-net-ilm-policy"
+setup.ilm.rollover_alias: "honey-net-%{[agent.version]}"
+setup.ilm.pattern: "{now/d}"
+setup.ilm.policy_file: "/etc/filebeat/honey-net-ilm-policy.json"
+setup.ilm.overwrite: true
 
 #================================ Processors =====================================
 
