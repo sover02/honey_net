@@ -35,6 +35,7 @@ jobs:
         ELASTICSEARCH_SCHEME: ${{ secrets.ELASTICSEARCH_SCHEME }}
         ELASTICSEARCH_USER: ${{ secrets.ELASTICSEARCH_USER }}
         ELASTICSEARCH_PASSWORD: ${{ secrets.ELASTICSEARCH_PASSWORD }}
+        ELASTICSEARCH_INDEX_PREFIX: 'honey-net'
 ```
 
 ## Running Locally
@@ -60,6 +61,7 @@ docker run \
     -e "INPUT_ELASTICSEARCH_SCHEME=<elastic scheme (HTTP of HTTPS)>" \ 
     -e "INPUT_ELASTICSEARCH_USER=<elastic user>" \
     -e "INPUT_ELASTICSEARCH_PASSWORD=<elastic password>" \
+    -e "INPUT_ELASTICSEARCH_INDEX_PREFIX=<elasticsearch index prefix to send data to>" \
     sover02/honey_net_rotate-alpine:1.3
 ```
 

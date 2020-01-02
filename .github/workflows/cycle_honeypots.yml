@@ -1,7 +1,7 @@
-on:
-  schedule:
-    # Run at 5am UTC, midnight EST
-    - cron:  '0 5 * * *'
+on: [push]
+  # schedule:
+  #   # Run at 5am UTC, midnight EST
+  #   - cron:  '0 5 * * *'
 
 jobs:
   cycle_honeypot_servers:
@@ -37,13 +37,14 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_DEFAULT_REGION: 'us-east-1'
         AWS_S3_TF_STATE_BUCKET: 'honey-net-terraform-key'
-        AWS_HONEYPOT_REGIONS: 'us-east-2,us-west-1,us-west-2,ap-northeast-1,ap-northeast-2,ap-southeast-1,ca-central-1,eu-central-1,eu-west-1,eu-west-2,eu-west-3,eu-north-1,sa-east-1'
+        AWS_HONEYPOT_REGIONS: 'us-east-2,us-west-1,us-west-2,ap-northeast-1,ap-northeast-2,ap-southeast-1,ap-southeast-2,ca-central-1,eu-central-1,eu-west-1,eu-west-2,eu-west-3,eu-north-1,sa-east-1'
         HONEYPOT_SERVERS_PER_REGION: 1
         ELASTICSEARCH_HOST: ${{ secrets.ELASTICSEARCH_HOST }}
         ELASTICSEARCH_PORT: ${{ secrets.ELASTICSEARCH_PORT }}
         ELASTICSEARCH_SCHEME: ${{ secrets.ELASTICSEARCH_SCHEME }}
         ELASTICSEARCH_USER: ${{ secrets.ELASTICSEARCH_USER }}
         ELASTICSEARCH_PASSWORD: ${{ secrets.ELASTICSEARCH_PASSWORD }}
+        ELASTICSEARCH_INDEX_PREFIX: 'honey-net'
 
     - name: Send Slack Notification
       env:

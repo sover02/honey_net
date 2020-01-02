@@ -28,3 +28,4 @@
     elastic_scheme: "{{ lookup('env','INPUT_ELASTICSEARCH_SCHEME') }}"
     elastic_user: "{{ lookup('env','INPUT_ELASTICSEARCH_USER') }}"
     elastic_password: "{{ lookup('env','INPUT_ELASTICSEARCH_PASSWORD') }}"
+    elastic_index_prefix: "{{ lookup('env','INPUT_ELASTICSEARCH_INDEX_PREFIX') }}"

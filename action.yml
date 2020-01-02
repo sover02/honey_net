@@ -43,6 +43,9 @@ inputs:
   ELASTICSEARCH_PASSWORD:
     description: 'Password to authenticate to Elasticsearch host with.'
     required: false
+  ELASTICSEARCH_INDEX_PREFIX:
+    description: 'Prefix of the Elasticsearch index to send data to. For example, a value of "honey-net" will send data to: "honey-net-[filebeat-version]-[datestamp]."'
+    required: true
 
 runs:
   using: 'docker'

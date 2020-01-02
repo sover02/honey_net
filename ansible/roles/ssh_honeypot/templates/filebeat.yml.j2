@@ -106,7 +106,6 @@ setup.template.settings:
 #fields:
 #  env: staging
 
-
 #============================== Dashboards =====================================
 # These settings control loading the sample dashboards to the Kibana index. Loading
 # the dashboards is disabled by default and can be enabled either by setting the
@@ -162,6 +161,12 @@ output.elasticsearch:
   protocol: "{{ elastic_scheme }}"
   username: "{{ elastic_user }}"
   password: "{{ elastic_password }}"
+
+  index: "{{ elastic_index_prefix }}-%{[agent.version]}-%{+yyyy.MM.dd}"
+
+setup.template.name: "{{ elastic_index_prefix }}"
+setup.template.pattern: "{{ elastic_index_prefix }}-*"
+setup.ilm.enabled: false
 
 #================================ Processors =====================================
 
