@@ -1,0 +1,14 @@
+# Establish multiple region provider
+provider "aws" {
+  alias  = "{{ item }}"
+  region = "{{ item }}"
+}
+
+module "honey_pot_{{ item }}" {
+  source = "./honey_net_instance"
+  providers = {
+    aws = "aws.{{ item }}"
+  }
+  number = {{ honeypot_servers_per_region }}
+}
+output "honey_pot_ip_addresses_{{ item }}" { value = module.honey_pot_{{ item }}.public_ip }

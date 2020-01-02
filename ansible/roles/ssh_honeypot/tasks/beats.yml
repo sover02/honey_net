@@ -1,7 +1,7 @@
 ---
 - name: Add FileBeat repository
   yum_repository:
-    name: filebeat-7.x
+    name: filebeat-oss-7.x
     description: FileBeat repository for Open Source 7.x packages
     baseurl: https://artifacts.elastic.co/packages/oss-7.x/yum
     gpgcheck: yes
@@ -22,12 +22,6 @@
     owner: root
     group: root
     mode: 0600
-  vars:
-    elastic_host: "{{ lookup('env','INPUT_ELASTICSEARCH_HOST') }}"
-    elastic_port: "{{ lookup('env','INPUT_ELASTICSEARCH_PORT') }}"
-    elastic_scheme: "{{ lookup('env','INPUT_ELASTICSEARCH_SCHEME') }}"
-    elastic_user: "{{ lookup('env','INPUT_ELASTICSEARCH_USER') }}"
-    elastic_password: "{{ lookup('env','INPUT_ELASTICSEARCH_PASSWORD') }}"
   notify: restart filebeat
     
 - name: Force a restart if configuration has changed

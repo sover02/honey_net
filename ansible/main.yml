@@ -1,17 +1,30 @@
 ---
 - name: Run Terraform
   hosts:
-   - "127.0.0.1"
+    - "127.0.0.1"
   roles:
-  - terraform
+    - terraform
   gather_facts: yes
+  vars:
+    no_destroy: "{{ lookup('env','INPUT_TERRAFORM_NO_DESTROY') }}"
+    destroy_only: "{{ lookup('env','INPUT_TERRAFORM_DESTROY_ONLY') }}"
+    aws_default_region: "{{ lookup('env','INPUT_AWS_DEFAULT_REGION') }}"
+    aws_s3_tf_state_bucket: "{{ lookup('env','INPUT_AWS_S3_TF_STATE_BUCKET') }}"
+    aws_honeypot_regions: "{{ lookup('env','INPUT_AWS_HONEYPOT_REGIONS').split(',') }}"
+    honeypot_servers_per_region: "{{ lookup('env','INPUT_HONEYPOT_SERVERS_PER_REGION') }}"
 
 - name: Honeypot servers
   hosts:
-   - all
+    - all
   roles:
-   - ssh_honeypot
+    - ssh_honeypot
   become: yes
   become_method: sudo
   strategy: free 
   gather_facts: no 
+  vars:
+    elastic_host: "{{ lookup('env','INPUT_ELASTICSEARCH_HOST') }}"
+    elastic_port: "{{ lookup('env','INPUT_ELASTICSEARCH_PORT') }}"
+    elastic_scheme: "{{ lookup('env','INPUT_ELASTICSEARCH_SCHEME') }}"
+    elastic_user: "{{ lookup('env','INPUT_ELASTICSEARCH_USER') }}"
+    elastic_password: "{{ lookup('env','INPUT_ELASTICSEARCH_PASSWORD') }}"

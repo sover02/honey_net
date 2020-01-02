@@ -1,5 +1,11 @@
 **/.vscode
-**/.retry
+**/.terraform/*
 **/.terraform
+*.tfstate.*
+*.tfstate
+*.tfvars
+
+**/.retry
+
 **/.DS_Store
 **/.swp

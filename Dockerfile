@@ -5,7 +5,7 @@ ENV TERRAFORM_VERSION=0.12.18
 
 RUN apk update && \
     apk add \
-        unzip curl wget ca-certificates \
+        unzip curl ca-certificates \
         openssh-client \
         python3 \
         gcc python3-dev libc-dev libffi-dev openssl-dev
@@ -16,7 +16,9 @@ RUN curl -s https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraf
 
 # Install python libraries from requirements.txt
 RUN pip3 install --upgrade setuptools pip wheel && \
-    pip3 install ansible
+    pip3 install \
+    ansible \
+    boto3
 
 # Copy application
 COPY . .

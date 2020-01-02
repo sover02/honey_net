@@ -1,0 +1,14 @@
+# Use s3 Backend
+terraform {
+  backend "s3" {
+    bucket = "{{ aws_s3_tf_state_bucket }}"
+    key    = "honey_net/key"
+    region = "{{ aws_default_region }}"
+  }
+}
+
+# Establish default region provider
+# Will be overridden by other aliases
+provider "aws" {
+  region = "{{ aws_default_region }}"
+}

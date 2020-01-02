@@ -1,23 +1,44 @@
-- set_fact:
-  no_destroy: "{{ lookup('env','INPUT_TERRAFORM_NO_DESTROY') }}"
-  destroy_only: "{{ lookup('env','INPUT_TERRAFORM_DESTROY_ONLY') }}"
+- name: Set Terraform Working Directory
+  set_fact:
+    terraform_work_dir: "../terraform"
 
+- name: Create the Terraform Working Directory
+  copy:
+    src: terraform
+    dest: ".."
+
+- name: Ensure Terraform Backend s3 bucket is present
+  s3_bucket:
+    name: "{{ aws_s3_tf_state_bucket }}"
+    state: present
+
+- name: Create Terraform Backend Config File
+  template:
+    src: terraform_backend.tf.j2
+    dest: "{{ terraform_work_dir }}/terraform_backend.tf"
+
+- name: Create Terraform honey_net tf files
+  template:
+    src: honey_net.tf.j2
+    dest: "{{ terraform_work_dir }}/honey_net-{{ item }}.tf"
+  loop: "{{ aws_honeypot_regions }}"
+  
 - name: Run Terraform Destroy
   terraform:
-    project_path: "../terraform"
+    project_path: "{{ terraform_work_dir }}"
     state: "absent"
     force_init: true
     backend_config:
-      region: "us-east-1"
+      region: "{{ aws_default_region }}"
   when: not no_destroy or no_destroy is not defined
 
 - name: Run Terraform Apply
   terraform:
-    project_path: "../terraform"
+    project_path: "{{ terraform_work_dir }}"
     state: "present"
     force_init: true
     backend_config:
-      region: "{{ lookup('env','INPUT_AWS_DEFAULT_REGION') }}"
+      region: "{{ aws_default_region }}"
   register: tf_command
   when: not destroy_only or destroy_only is not defined
 
