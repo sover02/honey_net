@@ -18,7 +18,7 @@
 - name: Copy ILM policy
   copy:
     src: honey-net-ilm-policy.json
-    dest: /etc/filebeat/filebeat.yml
+    dest: /etc/filebeat/honey-net-ilm-policy.json
     owner: root
     group: root
     mode: 0600
@@ -41,4 +41,3 @@
     name: filebeat
     state: started
     enabled: yes
-
