@@ -26,6 +26,8 @@
     name: docker
 
 - name: Get systems public_ip
+  become: yes
+  become_user: ec2-user
   ipify_facts:
   register: public_ip
 
