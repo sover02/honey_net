@@ -7,7 +7,7 @@ RUN apk update && \
     apk add \
         unzip curl ca-certificates \
         openssh-client \
-        python3 \
+        python3 rust \
         gcc python3-dev \
         libressl-dev musl-dev libc-dev libffi-dev cargo
 
@@ -17,7 +17,7 @@ RUN curl -s https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraf
 
 # Install python libraries from requirements.txt
 RUN pip3 install --upgrade setuptools pip wheel && \
-    pip3 install  --no-use-pep517 cryptography \
+    pip3 install cryptography \
     pip3 install \
     ansible \
     boto3
