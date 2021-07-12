@@ -17,6 +17,7 @@ RUN curl -s https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraf
 
 # Install python libraries from requirements.txt
 RUN pip3 install --upgrade setuptools pip wheel && \
+    pip3 install  --no-use-pep517 cryptography \
     pip3 install \
     ansible \
     boto3
