@@ -9,7 +9,7 @@ RUN apk update && \
         openssh-client \
         python3 \
         gcc python3-dev \
-        libssl-dev musl-dev libc-dev libffi-dev openssl-dev cargo
+        libressl-dev musl-dev libc-dev libffi-dev openssl-dev cargo
 
 # Install terraform
 RUN curl -s https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip > terraform_${TERRAFORM_VERSION}_linux_amd64.zip && \
