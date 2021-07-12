@@ -14,6 +14,9 @@ RUN apk update && \
 RUN curl -s https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip > terraform_${TERRAFORM_VERSION}_linux_amd64.zip && \
     unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /usr/bin
 
+# Update pip
+RUN pip3 install --upgrade pip
+
 # Install python libraries from requirements.txt
 RUN pip3 install --upgrade setuptools pip wheel && \
     pip3 install \
